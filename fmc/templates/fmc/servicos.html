@@ -1,6 +1,6 @@
 {% extends 'fmc/base.html' %}
 {% load static %}
-{% block title %}FMC | Servicos{% endblock %}
+{% block title %}{{ site.brand_name }} | Servicos{% endblock %}
 {% block content %}
     <h1>Servicos</h1>
 
@@ -10,7 +10,7 @@
             <div>
                 <h2>Remocoes Hospitalares</h2>
                 <p>Realizamos transportes intra-hospitalares, pacientes na residencia, realizacao de exames, consulta e ate mesmo transportes para outros estados.</p>
-                <a class="btn" href="https://api.whatsapp.com/send/?phone=5511912369133&text=Ola+FMC%21+Estou+entrando+em+contato+atraves+do+site.+Gostaria+de+solicitar+um+Orcamento.&type=phone_number&app_absent=0" target="_blank" rel="noopener">Solicitar Orcamento</a>
+                <a class="btn" href="{{ site.whatsapp_quote_url }}" target="_blank" rel="noopener">Solicitar Orcamento</a>
             </div>
         </div>
     </section>
@@ -32,8 +32,8 @@
             <div>
                 <h2>Central de atendimento 24h</h2>
                 <p>Estamos preparados para atender seu chamado via WhatsApp por toda a grande Sao Paulo.</p>
-                <p><strong>Telefone:</strong> (11) 91236-9133</p>
-                <a class="btn" href="https://api.whatsapp.com/send/?phone=5511912369133&text=Ola+FMC%21+Estou+entrando+em+contato+atraves+do+site.&type=phone_number&app_absent=0" target="_blank" rel="noopener">WhatsApp</a>
+                <p><strong>Telefone:</strong> {{ site.emergency_phone_display }}</p>
+                <a class="btn" href="{{ site.whatsapp_cta_url }}" target="_blank" rel="noopener">WhatsApp</a>
             </div>
         </div>
     </section>

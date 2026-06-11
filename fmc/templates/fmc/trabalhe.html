@@ -1,5 +1,5 @@
 {% extends 'fmc/base.html' %}
-{% block title %}FMC | Trabalhe Conosco{% endblock %}
+{% block title %}{{ site.brand_name }} | Trabalhe Conosco{% endblock %}
 {% block content %}
     <h1>Trabalhe com a FMC</h1>
 
@@ -7,16 +7,19 @@
         <form method="post">
             {% csrf_token %}
             <p>
-                <label for="id_nome_trabalhe">Informe seu Nome</label>
-                <input id="id_nome_trabalhe" type="text" name="nome" required>
+                {{ form.nome.errors }}
+                <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+                <input id="{{ form.nome.id_for_label }}" name="nome" type="text" value="{{ form.nome.value|default:'' }}" required>
             </p>
             <p>
-                <label for="id_telefone_trabalhe">Telefone Atualizado (WhatsApp)</label>
-                <input id="id_telefone_trabalhe" type="text" name="telefone" required>
+                {{ form.telefone.errors }}
+                <label for="{{ form.telefone.id_for_label }}">{{ form.telefone.label }}</label>
+                <input id="{{ form.telefone.id_for_label }}" name="telefone" type="text" value="{{ form.telefone.value|default:'' }}" required>
             </p>
             <p>
-                <label for="id_descricao_trabalhe">Fale um pouco de voce</label>
-                <textarea id="id_descricao_trabalhe" name="descricao" rows="4" required></textarea>
+                {{ form.descricao.errors }}
+                <label for="{{ form.descricao.id_for_label }}">{{ form.descricao.label }}</label>
+                <textarea id="{{ form.descricao.id_for_label }}" name="descricao" rows="4" required>{{ form.descricao.value|default:'' }}</textarea>
             </p>
             <button type="submit">Enviar</button>
         </form>

@@ -1,6 +1,6 @@
 {% extends 'fmc/base.html' %}
 {% load static %}
-{% block title %}FMC | Ambulancias Particulares{% endblock %}
+{% block title %}{{ site.brand_name }} | Ambulancias Particulares {{ site.emergency_phone_display }}{% endblock %}
 {% block content %}
     <section>
         <h1>Nossas ambulancias oferecem seguranca, cuidado e conforto durante o trajeto.</h1>
@@ -20,10 +20,10 @@
     </section>
 
     <section style="text-align:center; margin-top:18px;">
-        <h2 style="color:#d33438;">Emergencias: (11) 91236-9133</h2>
+        <h2 style="color:#d33438;">Emergencias: {{ site.emergency_phone_display }}</h2>
         <h3 style="color:#d33438;">ATENDIMENTO DE URGENCIA / EMERGENCIA 24h</h3>
         <p style="font-weight:700; color:#289484;">Remocao hospitalar com rapidez e seguranca</p>
-        <a class="btn" href="https://api.whatsapp.com/send/?phone=5511912369133&text=Ola+FMC%21+Estou+entrando+em+contato+atraves+do+site.&type=phone_number&app_absent=0" target="_blank" rel="noopener">Solicitar Ambulancia</a>
+        <a class="btn" href="{{ site.whatsapp_cta_url }}" target="_blank" rel="noopener">Solicitar Ambulancia</a>
     </section>
 
     <hr>

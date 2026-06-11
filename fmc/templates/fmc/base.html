@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}FMC Emergencias{% endblock %}</title>
+    <title>{% block title %}{{ site.brand_name }} | {{ site.emergency_phone_display }}{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'fmc/css/site.css' %}">
+    <link rel="stylesheet" href="{% static 'fmc/css/site.css' %}?v=2">
 </head>
 <body>
     <header>
@@ -26,6 +26,13 @@
     </header>    
 
     <main>
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <p class="message message--{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% block content %}
         {% endblock %}
     </main>
@@ -34,20 +41,28 @@
         <div>
             <img src="{% static 'fmc/img/icon.webp' %}" alt="Logo FMC" width="72" height="72" style="border-radius:12px;">
         </div>
-        <p><strong>Emergencia:</strong> (11) 91236-9133</p>
-        <p>Endereco: Sao Paulo/SP</p>
-        <p>Email: atendimento@fmcemergencias.com.br</p>
+        <p><strong>Emergencia:</strong> {{ site.emergency_phone_display }}</p>
+        <p>Endereco: {{ site.address }}</p>
+        <p>Email: {{ site.email }}</p>
         <p>
-            <a href="https://wa.me/5511912369133" target="_blank" rel="noopener">
+            <a href="{{ site.whatsapp_url }}" target="_blank" rel="noopener">
                 <img src="{% static 'fmc/img/whatsapp.webp' %}" alt="WhatsApp" width="34" height="34" style="vertical-align:middle; margin-right:6px;">
             </a>
-            <a href="https://www.facebook.com/profile.php?id=100090244066006&mibextid=ZbWKwL" target="_blank" rel="noopener">
+            <a href="{{ site.facebook_url }}" target="_blank" rel="noopener">
                 <img src="{% static 'fmc/img/facebook.webp' %}" alt="Facebook" width="34" height="34" style="vertical-align:middle;">
             </a>
+            <a href="{{ site.instagram_url }}" target="_blank" rel="noopener">
+                <img src="{% static 'fmc/img/instagram.png' %}" alt="Instagram" width="34" height="34" style="vertical-align:middle;">
+            </a>
         </p>
-        <p>&copy; 2026 FMC EMERGENCIAS MEDICAS. Todos os direitos reservados.</p>
-        <p>design por bpgstore</p>
-        <p>CNPJ: 39.944.908/0001-99</p>
+        <p>&copy; {{ site.copyright_year }} {{ site.brand_name }}. Todos os direitos reservados.</p>
+        <p>design por {{ site.designer }}</p>
+        <p>CNPJ: {{ site.cnpj }}</p>
     </footer>
+
+    <a class="whatsapp-fab" href="{{ site.whatsapp_cta_url }}" target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp">
+        <img src="{% static 'fmc/img/whatsapp.webp' %}" alt="WhatsApp" width="40" height="40">
+    </a>
+
 </body>
 </html>

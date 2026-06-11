@@ -10,22 +10,47 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+def _load_dotenv(dotenv_path: Path) -> None:
+    if not dotenv_path.exists():
+        return
+
+    for raw_line in dotenv_path.read_text(encoding='utf-8').splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith('#') or '=' not in line:
+            continue
+
+        key, value = line.split('=', 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+_load_dotenv(BASE_DIR / '.env')
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8ku0e7v5bpy2z#4q8n%y8=uk#*h_blyj0s-at8f)6x7bxyk^7*'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-change-me')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+    if host.strip()
+]
 
 
 # Application definition
@@ -62,6 +87,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'fmc.context_processors.site_config',
             ],
         },
     },
@@ -117,3 +143,35 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+
+FMC_SITE = {
+    'brand_name': os.getenv('FMC_BRAND_NAME', 'YOUR_BRAND_NAME'),
+    'emergency_phone_display': os.getenv('FMC_PHONE_DISPLAY', '(00) 00000-0000'),
+    'phone_digits': os.getenv('FMC_PHONE_DIGITS', '5500000000000'),
+    'address': os.getenv('FMC_ADDRESS', 'YOUR_CITY/STATE'),
+    'email': os.getenv('FMC_EMAIL', 'contato@example.com'),
+    'facebook_url': os.getenv(
+        'FMC_FACEBOOK_URL',
+        'https://www.facebook.com/your-page',
+    ),
+    'whatsapp_url': os.getenv(
+        'FMC_WHATSAPP_URL',
+        'https://wa.me/5500000000000',
+    ),
+    'whatsapp_cta_url': os.getenv(
+        'FMC_WHATSAPP_CTA_URL',
+        'https://api.whatsapp.com/send/?phone=5500000000000&text=Ola+Empresa%21+Vim+pelo+site.&type=phone_number&app_absent=0',
+    ),
+    'whatsapp_quote_url': os.getenv(
+        'FMC_WHATSAPP_QUOTE_URL',
+        'https://api.whatsapp.com/send/?phone=5500000000000&text=Ola+Empresa%21+Gostaria+de+solicitar+um+Orcamento.&type=phone_number&app_absent=0',
+    ),
+    'instagram_url': os.getenv(
+        'FMC_INSTAGRAM_URL',
+        'https://www.instagram.com/your-profile',
+    ),
+    'copyright_year': os.getenv('FMC_COPYRIGHT_YEAR', '2026'),
+    'designer': os.getenv('FMC_DESIGNER', 'YOUR_DESIGNER'),
+    'cnpj': os.getenv('FMC_CNPJ', '00.000.000/0000-00'),
+}

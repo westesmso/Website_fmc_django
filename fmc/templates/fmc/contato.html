@@ -1,6 +1,6 @@
 {% extends 'fmc/base.html' %}
 {% load static %}
-{% block title %}FMC | Contato{% endblock %}
+{% block title %}{{ site.brand_name }} | Contato{% endblock %}
 {% block content %}
     <h1 style="text-align:center;">Entre em contato conosco</h1>
     <p style="text-align:center;">Estamos disponiveis 24 horas por dia para emergencias e duvidas. Use os canais abaixo para falar com nossa equipe.</p>
@@ -9,14 +9,14 @@
         <article class="card" style="padding:18px; text-align:center;">
             <img src="{% static 'fmc/img/whatsapp.webp' %}" alt="WhatsApp" width="42" height="42">
             <h2>WhatsApp</h2>
-            <p>(11) 91236-9133</p>
-            <a class="btn" href="https://wa.me/5511912369133" target="_blank" rel="noopener">Conversar agora</a>
+            <p>{{ site.emergency_phone_display }}</p>
+            <a class="btn" href="{{ site.whatsapp_url }}" target="_blank" rel="noopener">Conversar agora</a>
         </article>
 
         <article class="card" style="padding:18px; text-align:center;">
             <h2 style="color:#1a73e8;">Email</h2>
-            <p>atendimento@fmcemergencias.com.br</p>
-            <a class="btn" href="mailto:atendimento@fmcemergencias.com.br">Enviar e-mail</a>
+            <p>{{ site.email }}</p>
+            <a class="btn" href="mailto:{{ site.email }}">Enviar e-mail</a>
         </article>
     </section>
 
@@ -25,20 +25,23 @@
         <form method="post">
             {% csrf_token %}
             <p>
-                <label for="id_nome">Nome completo</label>
-                <input id="id_nome" name="nome" type="text" required>
+                {{ form.nome.errors }}
+                <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+                <input id="{{ form.nome.id_for_label }}" name="nome" type="text" value="{{ form.nome.value|default:'' }}" required>
             </p>
             <p>
-                <label for="id_email">Email</label>
-                <input id="id_email" name="email" type="email" required>
+                {{ form.email.errors }}
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                <input id="{{ form.email.id_for_label }}" name="email" type="email" value="{{ form.email.value|default:'' }}" required>
             </p>
             <p>
-                <label for="id_mensagem">Mensagem</label>
-                <textarea id="id_mensagem" name="mensagem" rows="5" required></textarea>
+                {{ form.mensagem.errors }}
+                <label for="{{ form.mensagem.id_for_label }}">{{ form.mensagem.label }}</label>
+                <textarea id="{{ form.mensagem.id_for_label }}" name="mensagem" rows="5" required>{{ form.mensagem.value|default:'' }}</textarea>
             </p>
             <button type="submit">Enviar</button>
         </form>
     </section>
 
-    <p style="margin-top:16px;"><strong>Nossa localizacao:</strong> Sao Paulo/SP</p>
+    <p style="margin-top:16px;"><strong>Nossa localizacao:</strong> {{ site.address }}</p>
 {% endblock %}

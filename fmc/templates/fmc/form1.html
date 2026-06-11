@@ -1,5 +1,5 @@
 {% extends 'fmc/base.html' %}
-{% block title %}FMC | Cotacao de Eventos{% endblock %}
+{% block title %}{{ site.brand_name }} | Cotacao de Eventos{% endblock %}
 {% block content %}
     <h1>Cotacao de Eventos</h1>
 
@@ -7,16 +7,19 @@
         <form method="post">
             {% csrf_token %}
             <p>
-                <label for="id_nome_form1">Nome</label>
-                <input id="id_nome_form1" type="text" name="nome" required>
+                {{ form.nome.errors }}
+                <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+                <input id="{{ form.nome.id_for_label }}" name="nome" type="text" value="{{ form.nome.value|default:'' }}" required>
             </p>
             <p>
-                <label for="id_email_form1">Email</label>
-                <input id="id_email_form1" type="email" name="email" required>
+                {{ form.email.errors }}
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                <input id="{{ form.email.id_for_label }}" name="email" type="email" value="{{ form.email.value|default:'' }}" required>
             </p>
             <p>
-                <label for="id_msg_form1">Mensagem</label>
-                <textarea id="id_msg_form1" name="mensagem" rows="5" required></textarea>
+                {{ form.mensagem.errors }}
+                <label for="{{ form.mensagem.id_for_label }}">{{ form.mensagem.label }}</label>
+                <textarea id="{{ form.mensagem.id_for_label }}" name="mensagem" rows="5" required>{{ form.mensagem.value|default:'' }}</textarea>
             </p>
             <button type="submit">Enviar</button>
         </form>

@@ -1,6 +1,24 @@
-{% extends 'fmc/base.html'  %}
-{% block title %}Formulário{% endblock %}
+{% extends 'fmc/base.html' %}
+{% block title %}FMC | Cotacao de Eventos{% endblock %}
 {% block content %}
-    <h1>Formulário FMC</h1>
-    <p>Preencha o formulário abaixo.</p>
+    <h1>Cotacao de Eventos</h1>
+
+    <section class="card" style="padding:18px; max-width:760px; margin:0 auto;">
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label for="id_nome_form1">Nome</label>
+                <input id="id_nome_form1" type="text" name="nome" required>
+            </p>
+            <p>
+                <label for="id_email_form1">Email</label>
+                <input id="id_email_form1" type="email" name="email" required>
+            </p>
+            <p>
+                <label for="id_msg_form1">Mensagem</label>
+                <textarea id="id_msg_form1" name="mensagem" rows="5" required></textarea>
+            </p>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
 {% endblock %}

@@ -3,10 +3,11 @@
 :root {
     --verde: #289484;
     --verde-escuro: #0a690e;
+    --verde-whatsapp: #03a533;
     --gradiente: #0a3d62;
     --vermelho: #d33438;
     --sombra: rgba(0, 0, 0, 0.12);
-    --fundo: #f6faf9;
+    --fundo: #ffffff;
     --texto: #253331;
     --texto-fraco: #4a5a57;
     --branco: #ffffff;
@@ -25,7 +26,7 @@ body {
 
 body {
     font-family: "Open Sans", "Segoe UI", sans-serif;
-    background: linear-gradient(180deg, #fbfdfc 0%, var(--fundo) 100%);
+    background: var(--fundo);
     color: var(--texto);
     display: flex;
     flex-direction: column;
@@ -35,16 +36,15 @@ header {
     position: sticky;
     top: 0;
     z-index: 30;
-    background: rgba(255, 255, 255, 0.86);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(6px);
-    box-shadow: 0 4px 20px var(--sombra);
-    border-radius: 0 0 10px 10px;
+    box-shadow: 0 6px 20px var(--sombra);
 }
 
 nav {
-    max-width: 1200px;
+    max-width: 1220px;
     margin: 0 auto;
-    padding: 14px;
+    padding: 14px 12px;
 }
 
 nav ul {
@@ -59,11 +59,13 @@ nav ul {
 }
 
 nav a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     text-decoration: none;
     color: var(--verde);
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     background: var(--branco);
     padding: 10px 14px;
     border-radius: 20px;
@@ -78,13 +80,13 @@ nav a:hover {
 }
 
 main {
-    width: min(1200px, 94vw);
-    margin: 18px auto 30px;
-    padding: 18px;
+    width: min(1220px, 96vw);
+    margin: 12px auto 28px;
+    padding: 12px;
     flex: 1;
-    background: var(--branco);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px var(--sombra);
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 h1,
@@ -96,13 +98,34 @@ h3 {
 }
 
 h1 {
-    font-size: clamp(30px, 4vw, 40px);
+    font-size: clamp(30px, 4vw, 42px);
 }
 
 p {
     margin-top: 0;
     line-height: 1.65;
     color: var(--texto-fraco);
+    font-size: 18px;
+}
+
+main > section,
+main > article {
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 20px var(--sombra);
+    background: #fff;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--sombra);
+    background: #fff;
+}
+
+main img {
+    display: block;
+    max-width: 100%;
 }
 
 button,
@@ -116,6 +139,11 @@ input[type="submit"] {
     padding: 0.65rem 1rem;
     font-weight: 700;
     cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
 }
 
 button:hover,
@@ -142,10 +170,14 @@ select:focus {
     border-color: var(--verde);
 }
 
+textarea {
+    resize: vertical;
+}
+
 hr {
     border: 0;
     height: 1px;
-    background: #e8eeec;
+    background: #f2f3f3;
     margin: 20px 0;
 }
 
@@ -159,9 +191,17 @@ footer {
 }
 
 footer p {
-    margin: 0;
+    margin: 4px 0;
     color: var(--branco);
     font-size: 14px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer img {
+    display: inline-block;
 }
 
 @media (max-width: 900px) {
@@ -192,6 +232,10 @@ footer p {
 
     main {
         width: 95vw;
-        padding: 12px;
+        padding: 8px;
+    }
+
+    p {
+        font-size: 16px;
     }
 }

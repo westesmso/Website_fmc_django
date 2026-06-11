@@ -1,6 +1,40 @@
-{% extends 'fmc/base.html'  %}
-{% block title %}Serviços{% endblock %}
+{% extends 'fmc/base.html' %}
+{% load static %}
+{% block title %}FMC | Servicos{% endblock %}
 {% block content %}
-    <h1>Serviços FMC</h1>
-    <p>Confira os serviços que oferecemos.</p>
+    <h1>Servicos</h1>
+
+    <section class="card" style="padding:12px; margin-bottom:14px;">
+        <div style="display:grid; grid-template-columns:minmax(220px, 320px) 1fr; gap:14px; align-items:center;">
+            <img src="{% static 'fmc/img/22.webp' %}" alt="Remocoes hospitalares" style="width:100%; border-radius:12px;">
+            <div>
+                <h2>Remocoes Hospitalares</h2>
+                <p>Realizamos transportes intra-hospitalares, pacientes na residencia, realizacao de exames, consulta e ate mesmo transportes para outros estados.</p>
+                <a class="btn" href="https://api.whatsapp.com/send/?phone=5511912369133&text=Ola+FMC%21+Estou+entrando+em+contato+atraves+do+site.+Gostaria+de+solicitar+um+Orcamento.&type=phone_number&app_absent=0" target="_blank" rel="noopener">Solicitar Orcamento</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="card" style="padding:12px; margin-bottom:14px;">
+        <div style="display:grid; grid-template-columns:minmax(220px, 320px) 1fr; gap:14px; align-items:center;">
+            <img src="{% static 'fmc/img/10.webp' %}" alt="Ambulancia para eventos" style="width:100%; border-radius:12px;">
+            <div>
+                <h2>Ambulancia para Eventos</h2>
+                <p>Conte com a FMC para ter seu evento, festa, apresentacao, esporte e muito mais com seguranca.</p>
+                <a class="btn" href="{% url 'contato' %}">Solicite por E-mail</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="card" style="padding:12px;">
+        <div style="display:grid; grid-template-columns:minmax(220px, 320px) 1fr; gap:14px; align-items:center;">
+            <img src="{% static 'fmc/img/image.webp' %}" alt="Central 24h" style="width:100%; border-radius:12px;">
+            <div>
+                <h2>Central de atendimento 24h</h2>
+                <p>Estamos preparados para atender seu chamado via WhatsApp por toda a grande Sao Paulo.</p>
+                <p><strong>Telefone:</strong> (11) 91236-9133</p>
+                <a class="btn" href="https://api.whatsapp.com/send/?phone=5511912369133&text=Ola+FMC%21+Estou+entrando+em+contato+atraves+do+site.&type=phone_number&app_absent=0" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+        </div>
+    </section>
 {% endblock %}

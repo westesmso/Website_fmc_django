@@ -1,6 +1,44 @@
-{% extends 'fmc/base.html'  %}
-{% block title %}Contato{% endblock %}
+{% extends 'fmc/base.html' %}
+{% load static %}
+{% block title %}FMC | Contato{% endblock %}
 {% block content %}
-    <h1>Contato FMC</h1>
-    <p>Entre em contato conosco através do formulário abaixo.</p>
+    <h1 style="text-align:center;">Entre em contato conosco</h1>
+    <p style="text-align:center;">Estamos disponiveis 24 horas por dia para emergencias e duvidas. Use os canais abaixo para falar com nossa equipe.</p>
+
+    <section style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin:16px 0;">
+        <article class="card" style="padding:18px; text-align:center;">
+            <img src="{% static 'fmc/img/whatsapp.webp' %}" alt="WhatsApp" width="42" height="42">
+            <h2>WhatsApp</h2>
+            <p>(11) 91236-9133</p>
+            <a class="btn" href="https://wa.me/5511912369133" target="_blank" rel="noopener">Conversar agora</a>
+        </article>
+
+        <article class="card" style="padding:18px; text-align:center;">
+            <h2 style="color:#1a73e8;">Email</h2>
+            <p>atendimento@fmcemergencias.com.br</p>
+            <a class="btn" href="mailto:atendimento@fmcemergencias.com.br">Enviar e-mail</a>
+        </article>
+    </section>
+
+    <section class="card" style="padding:18px;">
+        <h2>Solicite um orcamento</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label for="id_nome">Nome completo</label>
+                <input id="id_nome" name="nome" type="text" required>
+            </p>
+            <p>
+                <label for="id_email">Email</label>
+                <input id="id_email" name="email" type="email" required>
+            </p>
+            <p>
+                <label for="id_mensagem">Mensagem</label>
+                <textarea id="id_mensagem" name="mensagem" rows="5" required></textarea>
+            </p>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <p style="margin-top:16px;"><strong>Nossa localizacao:</strong> Sao Paulo/SP</p>
 {% endblock %}

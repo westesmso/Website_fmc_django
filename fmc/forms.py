@@ -2,6 +2,8 @@ from django import forms
 
 
 class ContatoForm(forms.Form):
+    """Valida os dados enviados pelo formulario de contato."""
+
     nome = forms.CharField(
         max_length=200,
         label='Nome completo',
@@ -22,6 +24,8 @@ class ContatoForm(forms.Form):
 
 
 class TrabalheForm(forms.Form):
+    """Valida os dados enviados pelo formulario trabalhe conosco."""
+
     nome = forms.CharField(
         max_length=200,
         label='Nome',
@@ -40,6 +44,8 @@ class TrabalheForm(forms.Form):
 
 
 class CotacaoForm(forms.Form):
+    """Valida os dados enviados pelo formulario de cotacao de evento."""
+
     nome = forms.CharField(
         max_length=200,
         label='Nome',

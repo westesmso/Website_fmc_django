@@ -2,6 +2,8 @@ from django.db import models
 
 
 class LeadContato(models.Model):
+    """Representa um lead vindo do formulario de contato institucional."""
+
     nome = models.CharField(max_length=200)
     email = models.EmailField()
     mensagem = models.TextField()
@@ -13,10 +15,13 @@ class LeadContato(models.Model):
         ordering = ['-criado_em']
 
     def __str__(self):
+        """Retorna identificacao resumida para telas administrativas."""
         return f'{self.nome} — {self.email}'
 
 
 class LeadTrabalhe(models.Model):
+    """Representa um lead vindo do formulario trabalhe conosco."""
+
     nome = models.CharField(max_length=200)
     telefone = models.CharField(max_length=30)
     descricao = models.TextField()
@@ -28,10 +33,13 @@ class LeadTrabalhe(models.Model):
         ordering = ['-criado_em']
 
     def __str__(self):
+        """Retorna identificacao resumida para telas administrativas."""
         return f'{self.nome} — {self.telefone}'
 
 
 class LeadCotacao(models.Model):
+    """Representa um lead vindo do formulario de cotacao de evento."""
+
     nome = models.CharField(max_length=200)
     email = models.EmailField()
     mensagem = models.TextField()
@@ -43,4 +51,5 @@ class LeadCotacao(models.Model):
         ordering = ['-criado_em']
 
     def __str__(self):
+        """Retorna identificacao resumida para telas administrativas."""
         return f'{self.nome} — {self.email}'

@@ -61,6 +61,67 @@ python manage.py collectstatic
 python manage.py test
 ```
 
+## Deploy (HostGator) com foco em static
+
+Use este fluxo quando publicar em producao:
+
+1. Ajuste o arquivo `.env` de producao:
+
+```env
+DJANGO_SETTINGS_MODULE=website_fmc.settings_prod
+DJANGO_DEBUG=False
+DJANGO_ALLOWED_HOSTS=seu-dominio.com,www.seu-dominio.com
+DJANGO_STATIC_URL=/static/
+DJANGO_STATIC_ROOT=staticfiles
+DJANGO_SECURE_SSL_REDIRECT=True
+```
+
+2. Acesse o projeto no servidor e ative o ambiente virtual.
+3. Instale dependencias e rode migracoes:
+
+```bash
+pip install -r requirements.txt
+python manage.py migrate
+```
+
+4. Gere os arquivos estaticos compilados:
+
+```bash
+python manage.py collectstatic --noinput
+```
+
+5. Verifique a pasta gerada `staticfiles/` no diretorio do projeto.
+6. Configure o servidor web para servir `/static/` apontando para essa pasta `staticfiles/`.
+
+Exemplo de ideia (o caminho real depende da sua conta no HostGator):
+
+- URL: `/static/`
+- Diretorio fisico: `/home/SEU_USUARIO/SEU_PROJETO/staticfiles/`
+
+Se usar Python App no cPanel/Passenger, o mapeamento de static normalmente e feito por regra de servidor (Apache/Nginx) fora do Django.
+
+7. Reinicie a aplicacao Python no painel da hospedagem.
+
+### Como saber se o static ficou certo
+
+1. Abra o site e use F12 (Network).
+2. Recarregue a pagina.
+3. Confirme que arquivos como `/static/fmc/css/site.css` respondem com status 200.
+4. Se aparecer 404 em static, o problema e no mapeamento `/static/` -> `staticfiles/` no servidor.
+
+## Documentacao tecnica (Markdown)
+
+Todos os documentos estao em `documents/`.
+
+- `documents/entities-and-classes.md`: entidades, classes, campos, metodos e relacoes em camadas.
+- `documents/methods-and-behavior.md`: metodos/funcoes principais e comportamento por fluxo.
+- `documents/routes-architecture.md`: arquitetura de rotas, handlers e redirects legados.
+- `documents/software-architecture.md`: visao arquitetural por camadas (MVT) e fluxo de execucao.
+- `documents/security-measures.md`: medidas de seguranca aplicadas e recomendacoes futuras.
+- `documents/relevant-files-overview.md`: explicacao breve dos arquivos relevantes e suas funcoes.
+- `documents/files-overview.md`: inventario resumido de arquivos e funcoes principais.
+- `documents/improvement-plan.md`: plano de aprimoramento para escala, resiliencia e evolucao.
+
 ## Rotas e templates
 
 As páginas principais estão no app `fmc`:

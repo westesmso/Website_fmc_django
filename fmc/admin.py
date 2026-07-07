@@ -4,6 +4,8 @@ from .models import LeadContato, LeadTrabalhe, LeadCotacao
 
 @admin.register(LeadContato)
 class LeadContatoAdmin(admin.ModelAdmin):
+    """Configuracao administrativa para listagem e filtro de LeadContato."""
+
     list_display = ('nome', 'email', 'criado_em')
     list_filter = ('criado_em',)
     search_fields = ('nome', 'email')
@@ -13,6 +15,8 @@ class LeadContatoAdmin(admin.ModelAdmin):
 
 @admin.register(LeadTrabalhe)
 class LeadTrabalheAdmin(admin.ModelAdmin):
+    """Configuracao administrativa para listagem e filtro de LeadTrabalhe."""
+
     list_display = ('nome', 'telefone', 'criado_em')
     list_filter = ('criado_em',)
     search_fields = ('nome', 'telefone')
@@ -22,6 +26,8 @@ class LeadTrabalheAdmin(admin.ModelAdmin):
 
 @admin.register(LeadCotacao)
 class LeadCotacaoAdmin(admin.ModelAdmin):
+    """Configuracao administrativa para listagem e filtro de LeadCotacao."""
+
     list_display = ('nome', 'email', 'criado_em')
     list_filter = ('criado_em',)
     search_fields = ('nome', 'email')

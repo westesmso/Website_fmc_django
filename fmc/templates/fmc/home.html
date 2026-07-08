@@ -1,43 +1,129 @@
-{% extends 'fmc/base.html' %}
-{% load static %}
-{% block title %}{{ site.brand_name }} | Ambulancias Particulares {{ site.emergency_phone_display }}{% endblock %}
-{% block content %}
-    <section>
-        <h1>Nossas ambulancias oferecem seguranca, cuidado e conforto durante o trajeto.</h1>
-        <p>O paciente e monitorado e acompanhado pela equipe composta por motorista-socorrista e enfermeiro(a).</p>
-    </section>
+{% extends 'fmc/base.html' %} {% load static %} {% block title %}{{
+site.brand_name }} | Ambulancias Particulares {{ site.emergency_phone_display
+}}{% endblock %} {% block content %}
+<section>
+  <h1>
+    Nossas ambulancias oferecem seguranca, cuidado e conforto durante o trajeto.
+  </h1>
+  <p>
+    O paciente e monitorado e acompanhado pela equipe composta por
+    motorista-socorrista e enfermeiro(a).
+  </p>
+</section>
 
-    <hr>
+<hr />
+<!-- carousel -->
+<section>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="{% static 'fmc/img/14.webp' %}" alt="Ambulancia FMC 14" style="width:100%; border-radius:12px; justify-content: center; align-items: center;">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static 'fmc/img/6.webp' %}" alt="Ambulancia FMC 6" style="width:100%; border-radius:12px;">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static 'fmc/img/26.webp' %}" alt="Ambulancia FMC 26" style="width:100%; border-radius:12px;">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static 'fmc/img/vtrrside.webp' %}" alt="Ambulancia FMC lateral" style="width:100%; border-radius:12px; justify-content: center; align-items: center;">
+      </div>
+    </div>
+    <!-- Navegação (opcional) -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
 
-    <section>
-        <h2>Carrossel</h2>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
-            <img src="{% static 'fmc/img/14.webp' %}" alt="Ambulancia FMC 14" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,.12);">
-            <img src="{% static 'fmc/img/6.webp' %}" alt="Ambulancia FMC 6" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,.12);">
-            <img src="{% static 'fmc/img/26.webp' %}" alt="Ambulancia FMC 26" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,.12);">
-            <img src="{% static 'fmc/img/vtrrside.webp' %}" alt="Ambulancia FMC lateral" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,.12);">
-        </div>
-    </section>
+<section style="text-align: center; margin-top: 18px">
+  <h2 style="color: #d33438">
+    Emergencias: {{ site.emergency_phone_display }}
+  </h2>
+  <h3 style="color: #d33438">ATENDIMENTO DE URGENCIA / EMERGENCIA 24h</h3>
+  <p style="font-weight: 700; color: #289484">
+    Remocao hospitalar com rapidez e seguranca
+  </p>
+  <a
+    class="btn"
+    href="{{ site.whatsapp_cta_url }}"
+    target="_blank"
+    rel="noopener"
+    >Solicitar Ambulancia</a
+  >
+</section>
 
-    <section style="text-align:center; margin-top:18px;">
-        <h2 style="color:#d33438;">Emergencias: {{ site.emergency_phone_display }}</h2>
-        <h3 style="color:#d33438;">ATENDIMENTO DE URGENCIA / EMERGENCIA 24h</h3>
-        <p style="font-weight:700; color:#289484;">Remocao hospitalar com rapidez e seguranca</p>
-        <a class="btn" href="{{ site.whatsapp_cta_url }}" target="_blank" rel="noopener">Solicitar Ambulancia</a>
-    </section>
+<hr />
 
-    <hr>
+<section>
+  <h2>Somos prestigiados por nossos clientes:</h2>
+  <div
+    style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+    "
+  >
+    <img
+      src="{% static 'fmc/img/rating1.webp' %}"
+      alt="Avaliacao 1"
+      style="width: 100%; border-radius: 14px"
+    />
+    <img
+      src="{% static 'fmc/img/rating2.webp' %}"
+      alt="Avaliacao 2"
+      style="width: 100%; border-radius: 14px"
+    />
+    <img
+      src="{% static 'fmc/img/rating3.webp' %}"
+      alt="Avaliacao 3"
+      style="width: 100%; border-radius: 14px"
+    />
+    <img
+      src="{% static 'fmc/img/rating4.webp' %}"
+      alt="Avaliacao 4"
+      style="width: 100%; border-radius: 14px"
+    />
+    <img
+      src="{% static 'fmc/img/rating5.webp' %}"
+      alt="Avaliacao 5"
+      style="width: 100%; border-radius: 14px"
+    />
+    <img
+      src="{% static 'fmc/img/rating6.webp' %}"
+      alt="Avaliacao 6"
+      style="width: 100%; border-radius: 14px"
+    />
+    <img
+      src="{% static 'fmc/img/rating7.webp' %}"
+      alt="Avaliacao 7"
+      style="width: 100%; border-radius: 14px"
+    />
+  </div>
+</section>
 
-    <section>
-        <h2>Somos prestigiados por nossos clientes:</h2>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px;">
-            <img src="{% static 'fmc/img/rating1.webp' %}" alt="Avaliacao 1" style="width:100%; border-radius:14px;">
-            <img src="{% static 'fmc/img/rating2.webp' %}" alt="Avaliacao 2" style="width:100%; border-radius:14px;">
-            <img src="{% static 'fmc/img/rating3.webp' %}" alt="Avaliacao 3" style="width:100%; border-radius:14px;">
-            <img src="{% static 'fmc/img/rating4.webp' %}" alt="Avaliacao 4" style="width:100%; border-radius:14px;">
-            <img src="{% static 'fmc/img/rating5.webp' %}" alt="Avaliacao 5" style="width:100%; border-radius:14px;">
-            <img src="{% static 'fmc/img/rating6.webp' %}" alt="Avaliacao 6" style="width:100%; border-radius:14px;">
-            <img src="{% static 'fmc/img/rating7.webp' %}" alt="Avaliacao 7" style="width:100%; border-radius:14px;">
-        </div>
-    </section>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  const swiper = new Swiper('.mySwiper', {
+    loop: true,           // infinito
+    autoplay: {
+      delay: 3000,        // troca a cada 3s
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    effect: 'slide',      // pode ser 'fade', 'cube', etc.
+  });
+</script>
 {% endblock %}
